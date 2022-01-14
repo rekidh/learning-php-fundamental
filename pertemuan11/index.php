@@ -18,13 +18,18 @@ require 'functions.php';  // untuk mengimport file function.php
     <h1>Daftar Mahasiswa</h1>
     <a href="tambah.php">tambah data mahasiswa</a>
     <br> <br>
+    <form action="" method="post">
+        <input type="search" name="search">
+        <button type="submit">cari</button>
+    </form>
+    <br>
     <table border="1" cellpadding="10" cellspacing="0">
         <tr>
             <th>no.</th>
             <th>aksi</th>
             <th>gambar</th>
-            <th>nrp</th>
             <th>nama</th>
+            <th>nrp</th>
             <th>email</th>
             <th>jurusan </th>
         </tr>
@@ -45,8 +50,8 @@ require 'functions.php';  // untuk mengimport file function.php
             <td><?php echo($row["email"]); ?></td>
             <td><?php echo($row["jurusan"]); ?></td>
         </tr>
-        <?php $i++; ?>
-    <?php endforeach ;?>
+        <?php $i++; ?>          <!-- ingkremen untuk variabel $i yang akan din gunakan untuk penomoran  -->
+    <?php endforeach ;?>         <!-- seperti namanya dia dalah penutup oengulangan-->
     </table>
 </body>
 </html>
