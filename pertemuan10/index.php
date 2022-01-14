@@ -35,7 +35,7 @@ require 'functions.php';  // untuk mengimport file function.php
             <td><?php echo($i); ?></td>
             <td>
                 <a href="">edit</a>
-                <a href="hapus.php?id=<?= $row["nama"]; ?>"> hapus</a> <!-- php?id= php akan mengirimkan id ke halaman yang di tuju-->
+                <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm ('yakin') "> hapus</a> <!-- php?id= php akan mengirimkan id ke halaman yang di tuju-->
             </td>
             <td>
                 <img src="<?php echo($row["gambar"]); ?>" alt="gambar" width="50px">
