@@ -1,7 +1,7 @@
 <?php
 
 require 'functions.php';  // untuk mengimport file function.php
-    $mhs = query("SELECT * FROM mahasiswa");
+    // $mhs = query("SELECT * FROM mahasiswa");
 
 ?>
 
@@ -30,13 +30,12 @@ require 'functions.php';  // untuk mengimport file function.php
         </tr>
         <?php $i = 1 ;?> <!-- var ini untuk memberikan nomor urut pada colum nomor -->
 <!-- while di bawah ini adalah untuk mengulang tabel row nya -->
-
     <?php foreach ( $mhs as $row) :?>
         <tr>
             <td><?php echo($i); ?></td>
             <td>
                 <a href="">edit</a>
-                <a href="">hapus</a>
+                <a href="hapus.php?id=<?= $row["nama"]; ?>"> hapus</a> <!-- php?id= php akan mengirimkan id ke halaman yang di tuju-->
             </td>
             <td>
                 <img src="<?php echo($row["gambar"]); ?>" alt="gambar" width="50px">

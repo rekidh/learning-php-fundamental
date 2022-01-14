@@ -1,33 +1,22 @@
 <?php
-// konrksi 
-$db = mysqli_connect("localhost","root","","mahaswa");
+    require 'functions.php';                            // import code from file function.php
+                                                        // cek apakah tombol submit telah di pencet menggunakan if pengkondisian 
+    if( isset($_POST["submit"]) ) {                     // setelah di submit baru code ini akan di jalankan 
 
-// cek apakah tombol submit telah di pencet menggunakan if pengkondisian 
-
-    if( isset($_POST["submit"]) ) {
-    $nama= $_POST["nama"];
-    $nrp=$_POST["nrp"];
-    $email=$_POST["email"];
-    $jurusan=$_POST["jurusan"];
-    $gambar=$_POST["gambar"];
-
-
-    $query ="INSERT INTO mahasiswa VALUE ('','$nama','$nrp','$email','$jurusan','$gambar')";
-    mysqli_query($db,"$query");
-
-// keberhasilan data 
-
-        if(mysqli_affected_rows($db) > 0){
-            echo " berhasil";
+        if( tambah($_POST) > 0){                        // cek keberhasilan data
+                                                        // document.location.href = 'index.php'; adalah sintax js untuk redireq
+            echo "
+            <script> 
+                alert ('data berhasil') 
+                document.location.href = 'index.php';  
+            </script>" ;
         }else {
-            echo "gagal";
-            echo mysqli_error($db);
+            echo "
+            <script> 
+                alert ('data GAGAL') 
+            </script>" ;
         }
-
-}
-
-?>
-
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,35 +29,35 @@ $db = mysqli_connect("localhost","root","","mahaswa");
     <h1>tambah data mahasiswa</h1>
 
     <form action="" method="post">
-    <ul>
-        <li>
-            <label for="nama">nama:</label>
-            <input type="text" name="nama" id="nama">
-        </li>
-        <br>
-        <li>
-            <label for="nrp">nrp:</label>
-            <input type="text" name="nrp" id="nrp">
-        </li>
-        <br>
-        <li>
-            <label for="email">email:</label>
-            <input type="text" name="email" id="email">
-        </li>
-        <br>
-        <li>
-            <label for="jurusan">jurusan:</label>
-            <input type="text" name="jurusan" id="jurusan">
-        </li>
-        <br>
-        <li>
-            <label for="gambar">gambar:</label>
-            <input type="text" name="gambar" id="gambar">
-        </li>
-        <br>
-        <li>
-            <button type="submit" name="submit">tambah data</button>
-        </li>
+        <ul>
+            <li>
+                <label for="nama">nama:</label>
+                <input type="text" name="nama" id="nama" required> <!-- require adalah adtribut html5 agar imputan tidak boleh kosong--> 
+            </li>
+            <br>
+            <li>
+                <label for="nrp">nrp:</label>
+                <input type="text" name="nrp" id="nrp" required>
+            </li>
+            <br>
+            <li>
+                <label for="email">email:</label>
+                <input type="text" name="email" id="email" required>
+            </li>
+            <br>
+            <li>
+                <label for="jurusan">jurusan:</label>
+                <input type="text" name="jurusan" id="jurusan" required>
+            </li>
+            <br>
+            <li>
+                <label for="gambar">gambar:</label>
+                <input type="text" name="gambar" id="gambar" require>
+            </li>
+            <br>
+            <li>
+                <button type="submit" name="submit">tambah data</button>
+            </li>
     </ul>
 
     </form>
