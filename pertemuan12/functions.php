@@ -1,7 +1,7 @@
 <?php
 
     $db = mysqli_connect("localhost","root","","mahaswa"); // <=var connection to DB
-    $mhs = query("SELECT * FROM mahasiswa");               //<= untuk mengambil tabel dari DB
+    // $mhs = query("SELECT * FROM mahasiswa");               //<= untuk mengambil tabel dari DB
 
     function query($mhs){
             global $db ;                                // <= use Global variabel
@@ -50,5 +50,28 @@
             return mysqli_affected_rows($db);
             var_dump($query);
     }
+
+
+    function search($search_key){           // function untuk mancari
+        // opsi : WHERE nama='$search_key' <= harus benar@ sama
+        // opsi : nama LIKE '%$search_key%' <= harus di ikuti tanda % tanda itu memprentasikan APAPUN
+        // contoh nya : '$kataKunci%' <= mencari $kataKunci+ data yang ada begitupun sebalik nya
+
+        $query= " SELECT * FROM mahasiswa WHERE nama LIKE'%$search_key%' 
+                OR nrp LIKE '%$search_key%'                              
+                OR email LIKE '%$search_key%'                            
+                OR jurusan LIKE '%$search_key%'   
+                ";                                                     
+        return query($query);
+
+
+    }
+
+
+
+
+
+
+
 
 ?>
