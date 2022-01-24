@@ -22,8 +22,13 @@ if (isset($_POST["submit_search"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Halaman Admin</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <style>
+        <?php $css = file_get_contents('/XAMPP/htdocs/phpdasar/pertemuan13/style/index.css');
+        echo $css;
+        ?>
+    </style>
 
 </head>
 
@@ -57,7 +62,7 @@ if (isset($_POST["submit_search"])) {
                     <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm ('yakin') "> hapus</a> <!-- php?id= php akan mengirimkan id ke halaman yang di tuju-->
                 </td>
                 <td>
-                    <img src="<?php echo ($row["gambar"]); ?>" alt="gambar" width="50px">
+                    <img src="img/<?php echo ($row["gambar"]); ?>" alt="gambar" width="50px">
                 </td>
                 <td><?= $row["nama"]; ?></td>
                 <td><?php echo ($row["nrp"]); ?></td>

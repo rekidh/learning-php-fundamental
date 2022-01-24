@@ -1,4 +1,11 @@
 <?php
+
+session_start();                    // session_start() adalah sebuah function untuk memulai sebuah sesion
+if (!isset($_SESSION["login"])) {
+    header('location:login.php');
+    exit;
+}
+
 require 'functions.php';  // untuk mengimport file function.php
 
 $mhs = query("SELECT * FROM mahasiswa "); // query ini akan menampilkan data dari tabel mahasiswa 
@@ -22,12 +29,21 @@ if (isset($_POST["submit_search"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=" <?php file_get_contents('/XAMPP/htdocs/phpdasar/pertemuan13/style/bootstrap/css/bootstrap.min.css')  ?>">
+    <link rel="stylesheet" href="/XAMPP/htdocs/phpdasar/pertemuan13/style/index.css">
+    <link rel="stylesheet" href="/style/index.css">
+
     <title>Halaman Admin</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <style>
+        <?php $css = file_get_contents('/XAMPP/htdocs/phpdasar/pertemuan13/style/index.css');
+        echo $css;
+        ?>
+    </style>
 
 </head>
 
 <body>
+    <a href="logout.php">logout</a>
     <h1>Daftar Mahasiswa</h1>
     <a href="tambah.php">tambah data mahasiswa</a>
     <br> <br>
@@ -57,7 +73,7 @@ if (isset($_POST["submit_search"])) {
                     <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm ('yakin') "> hapus</a> <!-- php?id= php akan mengirimkan id ke halaman yang di tuju-->
                 </td>
                 <td>
-                    <img src="<?php echo ($row["gambar"]); ?>" alt="gambar" width="50px">
+                    <img src="img/<?php echo ($row["gambar"]); ?>" alt="gambar" width="50px">
                 </td>
                 <td><?= $row["nama"]; ?></td>
                 <td><?php echo ($row["nrp"]); ?></td>
@@ -69,6 +85,7 @@ if (isset($_POST["submit_search"])) {
         <?php endforeach; ?>
         <!-- seperti namanya dia dalah penutup oengulangan-->
     </table>
+    <script></script>
 </body>
 
 </html>
